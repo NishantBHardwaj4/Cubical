@@ -1,212 +1,30 @@
-// import React, {useEffect} from 'react';
-// import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-// import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
-// import UserNavBar from '../components/molecules/UserNavBar';
-// import { useDispatch } from 'react-redux';
-// import { addItemToCart } from '../redux/featurs/cartSlice/CartSliceProduct';
-
-// const AddProduct = ({route,navigation}) => {
-//   const {item} = route.params;
-//   const dispatch = useDispatch();
-
-//   const handleAddToCart = (product) => {
-//     dispatch(addItemToCart(product));
-//   };
-
-//   useEffect(() => {
-//     console.log(item);
-//   }, []);
-
-//   return (
-//     <GestureHandlerRootView>
-//       <UserNavBar />
-
-//       <FlatList
-//         data={item.subcategories}
-//         keyExtractor={(subcategory, index) => index.toString()}
-//         showsHorizontalScrollIndicator={true}
-//         renderItem={({ item: subcategory }) => (
-            
-//             <TouchableOpacity onPress={()=> {console.log('Button pressed'),navigation.navigate('ProductDetails', { product: subcategory })}}>
-//               <View
-//             style={{
-//               flexDirection: 'row',
-//               alignItems: 'center',
-//               justifyContent: 'space-evenly',
-//               backgroundColor: '#e0d1e5e0',
-//               borderRadius: 20,
-//               paddingVertical: 5,
-//               margin:5
-//             }}>
-//             <View>
-//               <Image
-//                 source={{
-//                   uri: subcategory.image,
-//                 }}
-//                 style={{width: 100, height: 100, resizeMode: 'contain', borderRadius: 20}}
-//               />
-//             </View>
-//             <View style={{marginHorizontal: 10}}>
-//               <View>
-//                 <Text style={{fontSize: 20, color: '#000'}}>{subcategory.name}</Text>
-//                 <Text style={{fontSize: 13}}>{subcategory.price}</Text>
-//                 <View>
-//                   <Text style={{fontSize: 15}}>Rating 4.5</Text>
-//                 </View>
-//               </View>
-//             </View>
-//             <View style={{}}>
-//               <TouchableOpacity style={{backgroundColor: 'lightpink', borderRadius: 15}} onPress={() => handleAddToCart(subcategory)}>
-//                 <Text
-//                   style={{
-//                     paddingHorizontal: 10,
-//                     paddingVertical: 5,
-//                     textAlign: 'center',
-//                   }}>
-//                   Add To Cart
-//                 </Text>
-//               </TouchableOpacity>
-//               <TouchableOpacity
-//                 style={{backgroundColor: 'lightpink', marginTop: 5, borderRadius: 15}}
-//                 onPress={() => navigation.navigate('BuyItemScreen')}>
-//                 <Text
-//                   style={{
-//                     paddingHorizontal: 10,
-//                     paddingVertical: 5,
-//                     textAlign: 'center',
-//                   }}>
-//                   Buy Now
-//                 </Text>
-//               </TouchableOpacity>
-//             </View>
-//             </View> 
-//             </TouchableOpacity>
-           
-//         )}
-//       />
-//      </GestureHandlerRootView>
-//   );
-// };
-
-// export default AddProduct;
-
-
-// import React, { useEffect } from 'react';
-// import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-// import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
-// import UserNavBar from '../components/molecules/UserNavBar';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { addItemToCart } from '../redux/featurs/cartSlice/CartSliceProduct';
-
-// const AddProduct = ({ route, navigation }) => {
-//   const { item } = route.params;
-//   const cartItems = useSelector((state) => state.cart.items); // Access current cart items
-//   const dispatch = useDispatch();
-
-//   const handleAddToCart = (product) => {
-//     dispatch(addItemToCart(product));
-//   };
-
-//   const handleBuyNow = (product) => {
-//     // Combine current cart items with selected product
-//     const updatedItems = [...cartItems, { ...product, quantity: 1 }];
-//     const total = updatedItems.reduce((sum, item) => {
-//       const price = parseFloat(item.price.replace('$', ''));
-//       return sum + price * (item.quantity || 1);
-//     }, 0);
-
-//     // Navigate to BuyItemScreen with the updated cart items and total
-//     navigation.navigate('BuyItemScreen', { items: updatedItems, total });
-//   };
-
-//   useEffect(() => {
-//     console.log(item);
-//   }, []);
-
-//   return (
-//     <GestureHandlerRootView>
-//       <UserNavBar />
-
-//       <FlatList
-//         data={item.subcategories}
-//         keyExtractor={(subcategory, index) => index.toString()}
-//         showsHorizontalScrollIndicator={true}
-//         renderItem={({ item: subcategory }) => (
-//           <TouchableOpacity
-//             onPress={() => {
-//               console.log('Button pressed');
-//               navigation.navigate('ProductDetails', { product: subcategory });
-//             }}
-//           >
-//             <View
-//               style={{
-//                 flexDirection: 'row',
-//                 alignItems: 'center',
-//                 justifyContent: 'space-evenly',
-//                 backgroundColor: '#e0d1e5e0',
-//                 borderRadius: 20,
-//                 paddingVertical: 5,
-//                 margin: 5,
-//               }}
-//             >
-//               <Image
-//                 source={{ uri: subcategory.image }}
-//                 style={{ width: 100, height: 100, resizeMode: 'contain', borderRadius: 20 }}
-//               />
-//               <View style={{ marginHorizontal: 10 }}>
-//                 <Text style={{ fontSize: 20, color: '#000' }}>{subcategory.name}</Text>
-//                 <Text style={{ fontSize: 13 }}>{subcategory.price}</Text>
-//                 <Text style={{ fontSize: 15 }}>Rating 4.5</Text>
-                
-//               </View>
-//               <View>
-//                 <TouchableOpacity
-//                   style={{ backgroundColor: 'lightpink', borderRadius: 15 }}
-//                   onPress={() => handleAddToCart(subcategory)}
-//                 >
-//                   <Text style={{ paddingHorizontal: 10, paddingVertical: 5, textAlign: 'center' }}>
-//                     Add To Cart
-//                   </Text>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity
-//                   style={{ backgroundColor: 'lightpink', marginTop: 5, borderRadius: 15 }}
-//                   onPress={() => handleBuyNow(subcategory)} // Updated to call handleBuyNow
-//                 >
-//                   <Text style={{ paddingHorizontal: 10, paddingVertical: 5, textAlign: 'center' }}>
-//                     Buy Now
-//                   </Text>
-//                 </TouchableOpacity>
-//               </View>
-//             </View>
-//           </TouchableOpacity>
-//         )}
-//       />
-//     </GestureHandlerRootView>
-//   );
-// };
-
-// export default AddProduct;
-
-
-
-/////
-
-
-import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
+import React, { useEffect } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  FlatList,
+} from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import UserNavBar from '../components/molecules/UserNavBar';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItemToCart, removeItemFromCart, updateItemQuantity,incrementQuantity,decrementQuantity } from '../redux/featurs/cartSlice/CartSliceProduct';
+import {
+  addItemToCart,
+  removeItemFromCart,
+  incrementQuantity,
+  decrementQuantity,
+} from '../redux/featurs/cartSlice/CartSliceProduct';
 
 const AddProduct = ({ route, navigation }) => {
   const { item } = route.params;
-  const cartItems = useSelector((state) => state.cart.items); // Access current cart items
+  const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  // Function to check if the product is already in the cart
   const isProductInCart = (productId) => {
-    return cartItems.some(item => item.id === productId);
+    return cartItems.some((item) => item.id === productId);
   };
 
   const handleAddToCart = (product) => {
@@ -217,26 +35,6 @@ const AddProduct = ({ route, navigation }) => {
     dispatch(removeItemFromCart(productId));
   };
 
-  const handleBuyNow = (product) => {
-    // Combine current cart items with selected product
-    const updatedItems = [...cartItems, { ...product, quantity: 1 }];
-    
-    // Calculate the total price of the cart
-    const total = updatedItems.reduce((sum, item) => {
-      const price = parseFloat(item.price.replace('$', '')); // Assuming price is in string format like "$20"
-      return sum + price * (item.quantity || 1);
-    }, 0);
-  
-    // Navigate to the BuyItemScreen and pass the updated cart items and total price
-    navigation.navigate('BuyItemScreen', { items: updatedItems, total });
-  };
-
-
-
-  useEffect(() => {
-    console.log(item);
-  }, []);
-
   const handleIncrement = (id) => {
     dispatch(incrementQuantity(id));
   };
@@ -245,105 +43,221 @@ const AddProduct = ({ route, navigation }) => {
     dispatch(decrementQuantity(id));
   };
 
-  return (
-    <GestureHandlerRootView>
-      <UserNavBar />
+  useEffect(() => {
+    console.log(item);
+  }, []);
 
+  return (
+    <GestureHandlerRootView style={styles.container}>
+      <UserNavBar />
       <FlatList
         data={item.subcategories}
         keyExtractor={(subcategory, index) => index.toString()}
-        showsHorizontalScrollIndicator={true}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item: subcategory }) => {
           const isInCart = isProductInCart(subcategory.id);
-          const cartItem = cartItems.find(cartItem => cartItem.id === subcategory.id);
+          const cartItem = cartItems.find((cartItem) => cartItem.id === subcategory.id);
           const quantity = cartItem ? cartItem.quantity : 1;
 
           return (
-            <TouchableOpacity
-              onPress={() => {
-                console.log('Button pressed');
-                navigation.navigate('ProductDetails', { product: subcategory });
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-evenly',
-                  backgroundColor: '#e0d1e5e0',
-                  borderRadius: 20,
-                  paddingVertical: 5,
-                  margin: 5,
-                }}
+            <View style={styles.card}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('ProductDetails', { product: subcategory })
+                }
               >
                 <Image
                   source={{ uri: subcategory.image }}
-                  style={{ width: 100, height: 100, resizeMode: 'contain', borderRadius: 20 }}
+                  style={styles.image}
                 />
-                <View style={{ marginHorizontal: 10 }}>
-                  <Text style={{ fontSize: 20, color: '#000' }}>{subcategory.name}</Text>
-                  <Text style={{ fontSize: 13 }}>{subcategory.price}</Text>
-                  <Text style={{ fontSize: 15 }}>Rating 4.5</Text>
-                  {isInCart && (
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
-                      <TouchableOpacity onPress={() => handleDecrement(subcategory.id)}>
-                        <Text style={{ fontSize: 20, marginHorizontal: 10, fontWeight: 'bold' }}>-</Text>
-                      </TouchableOpacity>
-                      <TextInput
-                        value={quantity.toString()}
-                        editable={false}
-                        style={{
-                          width: 40,
-                          height: 40,
-                          backgroundColor: '#fff',
-                          textAlign: 'center',
-                          fontSize: 18,
-                          color: 'red',
-                          borderRadius: 5,
-                        }}
-                      />
-                      <TouchableOpacity onPress={() => handleIncrement(subcategory.id)}>
-                        <Text style={{ fontSize: 20, marginHorizontal: 10, fontWeight: 'bold' }}>+</Text>
-                      </TouchableOpacity>
-                    </View>
-                  )}
-                </View>
+              </TouchableOpacity>
+              <View style={styles.productInfo}>
+                <Text style={styles.productName}>{subcategory.name}</Text>
+                <Text style={styles.productPrice}>{subcategory.price}</Text>
+                <Text style={styles.productRating}>Rating: 4.5</Text>
+              </View>
+              <View style={styles.actions}>
+                {isInCart && (
+                  <View style={styles.quantityContainer}>
+                    <TouchableOpacity
+                      style={styles.quantityButton}
+                      onPress={() => handleDecrement(subcategory.id)}
+                    >
+                      <Text style={styles.quantityButtonText}>-</Text>
+                    </TouchableOpacity>
+                    <TextInput
+                      value={quantity.toString()}
+                      editable={false}
+                      style={styles.quantityInput}
+                    />
+                    <TouchableOpacity
+                      style={styles.quantityButton}
+                      onPress={() => handleIncrement(subcategory.id)}
+                    >
+                      <Text style={styles.quantityButtonText}>+</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
                 <View>
                   {isInCart ? (
                     <TouchableOpacity
-                      style={{ backgroundColor: 'red', borderRadius: 15 }}
+                      style={styles.removeButton}
                       onPress={() => handleRemoveFromCart(subcategory.id)}
                     >
-                      <Text style={{ paddingHorizontal: 10, paddingVertical: 5, textAlign: 'center', color:'white' }}>
-                        Remove
-                      </Text>
+                      <Text style={styles.removeButtonText}>Remove</Text>
                     </TouchableOpacity>
                   ) : (
                     <TouchableOpacity
-                      style={{ backgroundColor: 'lightpink', borderRadius: 15 }}
+                      style={styles.addButton}
                       onPress={() => handleAddToCart(subcategory)}
                     >
-                      <Text style={{ paddingHorizontal: 10, paddingVertical: 5, textAlign: 'center' }}>
-                        Add to Cart
-                      </Text>
+                      <Text style={styles.addButtonText}>Add to Cart</Text>
                     </TouchableOpacity>
                   )}
                   <TouchableOpacity
-                    style={{ backgroundColor: 'lightpink', marginTop: 5, borderRadius: 15 }}
-                    onPress={() => handleBuyNow(subcategory)}  
+                    style={styles.buyNowButton}
+                    onPress={() => navigation.navigate('BuyItemScreen', {
+                      items: [...cartItems, { ...subcategory, quantity: 1 }],
+                      total: 0, // Calculate total as needed
+                    })}
                   >
-                    <Text style={{ paddingHorizontal: 10, paddingVertical: 5, textAlign: 'center' }}>
-                      Buy Now
-                    </Text>
+                    <Text style={styles.buyNowButtonText}>Buy Now</Text>
                   </TouchableOpacity>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           );
         }}
       />
     </GestureHandlerRootView>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f9fafb',
+    padding: 10,
+  },
+  card: {
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 10,
+    marginHorizontal: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 4,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 8,
+    resizeMode: 'cover',
+    marginRight: 12,
+  },
+  productInfo: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  productName: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#212121',
+    marginBottom: 5,
+  },
+  productPrice: {
+    fontSize: 14,
+    color: '#388e3c',
+    fontWeight: '500',
+    marginBottom: 5,
+  },
+  productRating: {
+    fontSize: 12,
+    color: '#757575',
+  },
+  actions: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  quantityContainer: {
+    
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  quantityButton: {
+    backgroundColor: '#eeeeee',
+    padding: 5,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#bdbdbd',
+  },
+  quantityButtonText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#616161',
+  },
+  quantityInput: {
+    color:'red',
+    width: 40,
+    height: 50,
+    textAlign: 'center',
+    fontSize: 16,
+    marginHorizontal: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    backgroundColor: '#fff',
+  },
+  addButton: {
+    // backgroundColor: '#2196f3',
+    backgroundColor:'#ff9a9e',
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginBottom: 6,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
+  },
+  addButtonText: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  buyNowButton: {
+    // backgroundColor: '#ff9800',
+    backgroundColor:'#a1c4fd',
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginTop: 5,
+  },
+  buyNowButtonText: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  removeButton: {
+    backgroundColor: '#d32f2f',
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginBottom: 6,
+  },
+  removeButtonText: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+});
 
 export default AddProduct;

@@ -118,7 +118,6 @@
 
 // export default BuyItemScreen;
 
-
 import React, { useState } from "react";
 import { View, Text, FlatList, StyleSheet, Alert } from "react-native";
 import UserAddress from "../components/molecules/UserAddress";
@@ -137,105 +136,147 @@ const BuyItemScreen = ({ route }) => {
       Alert.alert("Payment Method Required", "Please select a payment method to continue.");
       return;
     }
-    
-    Alert.alert("Payment Successful", `You have paid ${total} using ${selectedPaymentMethod}.`);
+    Alert.alert("Payment Successful", `You have paid $${total} using ${selectedPaymentMethod}.`);
   };
 
   return (
-    <GestureHandlerRootView>
-      <ScrollView>
-      <View style={styles.container}>
-      <Text style={styles.header}>Items to Buy</Text>
-      
-      <FlatList
-        data={items}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <GestureHandlerRootView>
-            <ScrollView>
-              <View style={styles.itemContainer}>
-                <Text>{item.name}</Text>
-                <Text>{item.price} x {item.quantity}</Text>
-              </View>
-            </ScrollView>
-          </GestureHandlerRootView>
-        )}
-      />
-
-      <Text style={styles.totalText}>Total: ${total}</Text>
-      <UserAddress />
-
-      <View style={styles.paymentContainer}>
-        <Text style={styles.paymentText}>Select Payment Method:</Text>
+    <GestureHandlerRootView style={styles.root}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.header}>Review Your Items</Text>
         
-        <TouchableOpacity
-          style={[
-            styles.paymentOption,
-            selectedPaymentMethod === "Card" && styles.selectedPaymentOption
-          ]}
-          onPress={() => handlePaymentSelection("Card")}
-        >
-          <Text>Pay with Card</Text>
-        </TouchableOpacity>
+        <FlatList
+          data={items}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.itemCard}>
+              <Text style={styles.itemName}>{item.name}</Text>
+              <Text style={styles.itemDetails}>
+                {item.price} x {item.quantity}
+              </Text>
+            </View>
+          )}
+        />
+        
+        <Text style={styles.totalText}>Total: ${total}</Text>
+        <UserAddress />
 
-        <TouchableOpacity
-          style={[
-            styles.paymentOption,
-            selectedPaymentMethod === "Paytm UPI" && styles.selectedPaymentOption
-          ]}
-          onPress={() => handlePaymentSelection("Paytm UPI")}
-        >
-          <Text>Pay with Paytm UPI</Text>
-        </TouchableOpacity>
+        <View style={styles.paymentContainer}>
+          <Text style={styles.paymentHeader}>Select Payment Method:</Text>
+          
+          <TouchableOpacity
+            style={[
+              styles.paymentOption,
+              selectedPaymentMethod === "Card" && styles.selectedPaymentOption,
+            ]}
+            onPress={() => handlePaymentSelection("Card")}
+          >
+            <Text style={styles.paymentOptionText}>Pay with Card</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.confirmButton} onPress={handleConfirmPayment}>
-          <Text style={styles.confirmButtonText}>Confirm Payment</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-    
+          <TouchableOpacity
+            style={[
+              styles.paymentOption,
+              selectedPaymentMethod === "Paytm UPI" && styles.selectedPaymentOption,
+            ]}
+            onPress={() => handlePaymentSelection("Paytm UPI")}
+          >
+            <Text style={styles.paymentOptionText}>Pay with Paytm UPI</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.confirmButton} onPress={handleConfirmPayment}>
+            <Text style={styles.confirmButtonText}>Confirm Payment</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </GestureHandlerRootView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
-  header: { fontSize: 24, fontWeight: 'bold', marginBottom: 16 },
-  itemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 8,
-    backgroundColor: '#fff',
-    margin: 2,
-    borderRadius: 10
+  root: {
+    flex: 1,
+    backgroundColor: "#f8f9fa",
   },
-  totalText: { fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginVertical: 10 },
-  paymentContainer: { marginTop: 20 },
-  paymentText: { fontSize: 18, fontWeight: 'bold', marginBottom: 10 },
-  paymentOption: {
+  container: {
+    padding: 16,
+    flexGrow: 1,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  itemCard: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#fff",
     padding: 15,
-    marginVertical: 5,
+    marginVertical: 8,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  itemName: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#333",
+  },
+  itemDetails: {
+    fontSize: 14,
+    color: "#777",
+  },
+  totalText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#333",
+    textAlign: "center",
+    marginVertical: 20,
+  },
+  paymentContainer: {
+    marginTop: 20,
+    paddingHorizontal: 10,
+  },
+  paymentHeader: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 15,
+  },
+  paymentOption: {
+    backgroundColor: "#f0f0f0",
+    padding: 15,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#ccc',
-    backgroundColor: '#f0f0f0',
+    borderColor: "#ccc",
+    marginBottom: 10,
+    justifyContent: "center",
   },
   selectedPaymentOption: {
-    borderColor: '#007bff',
-    backgroundColor: '#e0f7ff',
+    borderColor: "#007bff",
+    backgroundColor: "#e0f7ff",
+  },
+  paymentOptionText: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#333",
   },
   confirmButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: "#007bff",
     padding: 15,
     borderRadius: 10,
     marginTop: 20,
+    alignItems: "center",
   },
   confirmButtonText: {
-    color: '#fff',
     fontSize: 18,
-    textAlign: 'center',
-    fontWeight: 'bold',
+    fontWeight: "bold",
+    color: "#fff",
   },
 });
 

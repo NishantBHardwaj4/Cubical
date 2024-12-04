@@ -8,7 +8,6 @@ import { useNavigation } from '@react-navigation/native';
 const CategoriesList = () => {
   const navigation = useNavigation();
   const categories = useSelector(selectCategories);
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Categories</Text>
@@ -84,3 +83,4 @@ const styles = StyleSheet.create({
 });
 
 export default CategoriesList;
+  

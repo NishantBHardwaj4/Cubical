@@ -1,73 +1,89 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; 
-import { useNavigation, useRoute } from "@react-navigation/native"; 
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const BottomTab = () => {
-  const [selectedTab, setSelectedTab] = useState("Home");
-  const navigation = useNavigation(); 
-  const route = useRoute(); 
+  const navigation = useNavigation();
+  const route = useRoute();
 
-  useEffect(() => {
-    if (route.name === "ShomeHomeScreen") {
-      setSelectedTab("Home");
-    } else if (route.name === "Categories") {
-      setSelectedTab("Categories");
-    } else if (route.name === "CartScreen") {
-      setSelectedTab("Cart");
-    } else if (route.name === "UserScreen") {
-      setSelectedTab("User");
+  const getSelectedTab = () => {
+    switch (route.name) {
+      case "ShomeHomeScreen":
+        return "Home";
+      case "SearchResultsScreen":
+        return "Categories";
+      case "CartScreen":
+        return "Cart";
+      case "UserScreen":
+        return "User";
+      default:
+        return "Home";
     }
-  }, [route]); 
+  };
+
+  const selectedTab = getSelectedTab();
 
   return (
     <View style={styles.container}>
       {/* Home Tab */}
       <TouchableOpacity
         style={[styles.tab, selectedTab === "Home" && styles.selectedTab]}
-        onPress={() => {
-          setSelectedTab("Home"); // Update selected tab to "Home"
-          navigation.navigate('ShomeHomeScreen'); // Navigate to ShomeHomeScreen
-        }}
+        onPress={() => navigation.navigate("ShomeHomeScreen")}
       >
-        <Icon name="home" size={30} color={selectedTab === "Home" ? "#000" : "#888"} />
-        <Text style={[styles.tabText, selectedTab === "Home" && styles.selectedTabText]}>Home</Text>
+        <Icon
+          name="home"
+          size={30}
+          color={selectedTab === "Home" ? "#87CEEB" : "#888"} // Sky blue color for active tab
+        />
+        <Text style={[styles.tabText, selectedTab === "Home" && styles.selectedTabText]}>
+          Home
+        </Text>
       </TouchableOpacity>
 
       {/* Categories Tab */}
       <TouchableOpacity
         style={[styles.tab, selectedTab === "Categories" && styles.selectedTab]}
-        onPress={() => {
-          setSelectedTab("Categories");
-          navigation.navigate('SearchResultsScreen'); // Navigate to Categories
-        }}
+        onPress={() => navigation.navigate("SearchResultsScreen")}
       >
-        <Icon name="view-list" size={30} color={selectedTab === "Categories" ? "#000" : "#888"} />
-        <Text style={[styles.tabText, selectedTab === "Categories" && styles.selectedTabText]}>Categories</Text>
+        <Icon
+          name="view-list"
+          size={30}
+          color={selectedTab === "Categories" ? "#87CEEB" : "#888"} // Sky blue color for active tab
+        />
+        <Text style={[styles.tabText, selectedTab === "Categories" && styles.selectedTabText]}>
+          Categories
+        </Text>
       </TouchableOpacity>
 
       {/* Cart Tab */}
       <TouchableOpacity
         style={[styles.tab, selectedTab === "Cart" && styles.selectedTab]}
-        onPress={() => {
-          setSelectedTab("Cart");
-          navigation.navigate('CartScreen'); // Navigate to CartScreen
-        }}
+        onPress={() => navigation.navigate("CartScreen")}
       >
-        <Icon name="cart" size={30} color={selectedTab === "Cart" ? "#000" : "#888"} />
-        <Text style={[styles.tabText, selectedTab === "Cart" && styles.selectedTabText]}>Cart</Text>
+        <Icon
+          name="cart"
+          size={30}
+          color={selectedTab === "Cart" ? "#87CEEB" : "#888"} // Sky blue color for active tab
+        />
+        <Text style={[styles.tabText, selectedTab === "Cart" && styles.selectedTabText]}>
+          Cart
+        </Text>
       </TouchableOpacity>
 
       {/* User Tab */}
       <TouchableOpacity
         style={[styles.tab, selectedTab === "User" && styles.selectedTab]}
-        onPress={() => {
-          setSelectedTab("User");
-          navigation.navigate('UserScreen'); // Navigate to UserScreen
-        }}
+        onPress={() => navigation.navigate("UserScreen")}
       >
-        <Icon name="account" size={30} color={selectedTab === "User" ? "#000" : "#888"} />
-        <Text style={[styles.tabText, selectedTab === "User" && styles.selectedTabText]}>User</Text>
+        <Icon
+          name="account"
+          size={30}
+          color={selectedTab === "User" ? "#87CEEB" : "#888"} // Sky blue color for active tab
+        />
+        <Text style={[styles.tabText, selectedTab === "User" && styles.selectedTabText]}>
+          User
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -76,12 +92,13 @@ const BottomTab = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: 60,
+    height: 70,
     alignItems: "center",
     justifyContent: "space-around",
-    backgroundColor: "#f8f8f8",
+    backgroundColor: "#ffffff",
     borderTopWidth: 1,
     borderColor: "#ddd",
+    paddingHorizontal: 15,
   },
   tab: {
     flex: 1,
@@ -94,11 +111,12 @@ const styles = StyleSheet.create({
     marginTop: 5, // Adds space between icon and text
   },
   selectedTab: {
-    borderTopWidth: 3,
-    borderColor: "#000",
+    // borderTopWidth: 3,
+    borderColor: "#87CEEB", // Sky blue indicator
   },
   selectedTabText: {
-    color: "#000", // Highlight selected tab text
+    color: "#87CEEB", // Sky blue text for active tab
+    fontWeight: "600",
   },
 });
 

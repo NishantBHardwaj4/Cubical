@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
 
 
-const initialState = {
+const initialState = { 
   categories: [
     {
       name: 'Apparel',
@@ -10,62 +10,62 @@ const initialState = {
         'https://media.istockphoto.com/id/955641488/photo/clothes-shop-costume-dress-fashion-store-style-concept.webp?b=1&s=612x612&w=0&k=20&c=vY7Z40ulwxsFmetje1ck91C-GSPFpFUZqOxkIpuMug8=',
       subcategories: [
         {
-          name: "Men's Clothing",
+          name: "Men's    Fashion",
           image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiApGApcSx2d3YyhIqoovsI-_nVPdXhYKQFQ&s',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLATEgfpAEhQHw_rCWsoTwGZttzgEbEHwfnA&s',
           subcategories: [
             {
-                name: 'Kurta',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEM5BIwsxvdviMPGzRMODHIHErZAUW6pl71Q&s',
-                price: '$25',
+                name: 'Sweaters',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSTENuBqzN5JwvzJNbT-r8_1D9IHIz3nrZh8K0TxG9Wx_OBP4W3-EF5SWp0U8KeU9ULkA&usqp=CAU',
+                price: '$345',
                 rating: 4.3,
                 id: 'prod-001',
               },
               {
-                name: 'Shirt',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3a-Fgdp3tZJxZo1pWxwyzda6oT35W-7mEg&s',
+                name: 'Jacket',
+                image: 'https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F31%2F0d%2F310dbe8e29ea91d278a4ec73c137304e30bc8fb1.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]',
                 price: '$20',
                 rating: 4.5,
                 id: 'prod-002',
               },
               {
-                name: 'T-Shirt',
-                image: 'https://5.imimg.com/data5/LG/AM/OW/SELLER-31619481/plain-t-shirt-500x500.jpeg',
+                name: 'Denim Shirt',
+                image: 'https://cdn.shopify.com/s/files/1/0369/6076/4041/products/RFSH-40290-A_2_600x.jpg?v=1700228794',
                 price: '$15',
                 rating: 4.1,
                 id: 'prod-003',
               },
               {
                 name: 'Jeans',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq7ZusabNwnmBPz-SKryMmUB9hQn0UVCz1mA&s',
+                image: 'https://images.bestsellerclothing.in/data/JJ/13-feb-2024/246402301_g0.jpg?width=1080&height=1355&mode=fill&fill=blur&format=auto',
                 price: '$30',
                 rating: 4.6,
                 id: 'prod-004',
               },
               {
-                name: 'Jacket',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz7FqYColoIRNfpiSY3UyRIkfbsYR5oxbzdw&s',
+                name: 'Hoodies',
+                image: 'https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/21203458/2023/1/2/06271946-be59-476d-bb62-0b4d81c961611672651142670-Roadster-Men-Sweatshirts-91672651142282-1.jpg',
                 price: '$50',
                 rating: 4.7,
                 id: 'prod-005',
               },
               {
-                name: 'Sweater',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_iNp-E-3SlMrjnrYm7vKviZ_C8qv5jCBdVA&s',
+                name: 'Shorts',
+                image: 'https://assets.ajio.com/medias/sys_master/root/20240401/7ivk/660acc6f05ac7d77bbe8ad99/-473Wx593H-410477435-tpe-MODEL.jpg',
                 price: '$40',
                 rating: 4.4,
                 id: 'prod-006',
               },
               {
-                name: 'Blazer',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAol7LMqOx1azXc4Lrm7pTGDe0M6GiOo6eRQ&s',
+                name: 'T-Shirt',
+                image: 'https://img.damensch.com/products/johnny_polo_wisdom_wine_(5).jpg?fm=webp&h=500',
                 price: '$60',
                 rating: 4.8,
                 id: 'prod-007',
               },
               {
-                name: 'Track Suit',
-                image: 'https://5.imimg.com/data5/XH/UL/MY-43265664/men.png',
+                name: 'Ryder Jacket',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFA8rCxkSKMLfbh7Jsa_ANn0us6tnIExInXg&s',
                 price: '$22',
                 rating: 4.3,
                 id: 'prod-008',
@@ -73,88 +73,88 @@ const initialState = {
           ],
         },
         {
-          name: "Women's Clothing",
+          name: "Women's Fashion",
           image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH20QiR6EATdIXtJG6KHRKT-uUexza1M0oNw&s',
+            'https://m.media-amazon.com/images/I/61-MlTeQ1lL._AC_UY1100_.jpg',
         },
         {
-          name: "Kids' Clothing",
+          name: "Kids Fashion",
           image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToNrCPlVEE_hZvOPO3CvLg9xV_WvmwO69icQ&s',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0_uJtpjcGkFGigIKOE0on6W0-cqDTGoyIsA&s',
         },
         {
-          name: 'Footwear',
+          name: 'Sneakers',
           image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSZEmHE3pgXOA6coSMs5gnRtaqO1ASJs6WZg&s',
+            'https://www.converse.in/media/catalog/product/1/6/162050c_01_1.jpg?auto=webp&format=pjpg&width=640&height=800&fit=cover',
           subcategories: [
-            {
-                name: 'Nike',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnFKyLTkuY2dvN963dSVWFmFk-I__NanYFYA&s',
-                price: '$40',
-                id: 'shoe-001',
-                description:'Nike shoes are known for their innovative design, comfort, and performance-focused features, making them popular for sports, fitness, and everyday wear. They are often crafted with lightweight, breathable materials, advanced cushioning technologies like Air Max or Zoom Air, and ergonomic support to enhance foot stability and movement'
-              },
-              {
-                name: 'Adidas',
-                image: 'https://5.imimg.com/data5/BJ/PX/MY-35581878/adidas-vermont-white-running-shoes.png',
-                price: '$55',
-                id: 'shoe-002',
-                description:'Nike shoes are known for their innovative design, comfort, and performance-focused features, making them popular for sports, fitness, and everyday wear. They are often crafted with lightweight, breathable materials, advanced cushioning technologies like Air Max or Zoom Air, and ergonomic support to enhance foot stability and movement'
-              },
-              {
-                name: 'Puma',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbASUKxGng2oCQlny4ElHZPBdkFCk2_5mkGQ&s',
-                price: '$69',
-                id: 'shoe-003',
+            // {
+            //     name: 'Nike',
+            //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnFKyLTkuY2dvN963dSVWFmFk-I__NanYFYA&s',
+            //     price: '$40',
+            //     id: 'shoe-001',
+            //     description:'Nike shoes are known for their innovative design, comfort, and performance-focused features, making them popular for sports, fitness, and everyday wear. They are often crafted with lightweight, breathable materials, advanced cushioning technologies like Air Max or Zoom Air, and ergonomic support to enhance foot stability and movement'
+            //   },
+            //   {
+            //     name: 'Adidas',
+            //     image: 'https://5.imimg.com/data5/BJ/PX/MY-35581878/adidas-vermont-white-running-shoes.png',
+            //     price: '$55',
+            //     id: 'shoe-002',
+            //     description:'Nike shoes are known for their innovative design, comfort, and performance-focused features, making them popular for sports, fitness, and everyday wear. They are often crafted with lightweight, breathable materials, advanced cushioning technologies like Air Max or Zoom Air, and ergonomic support to enhance foot stability and movement'
+            //   },
+            //   {
+            //     name: 'Puma',
+            //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbASUKxGng2oCQlny4ElHZPBdkFCk2_5mkGQ&s',
+            //     price: '$69',
+            //     id: 'shoe-003',
                 
-              },
-              {
-                name: 'Nike',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnFKyLTkuY2dvN963dSVWFmFk-I__NanYFYA&s',
-                price: '$40',
-                id: 'shoe-004',
-              },
-              {
-                name: 'Adidas',
-                image: 'https://5.imimg.com/data5/BJ/PX/MY-35581878/adidas-vermont-white-running-shoes.png',
-                price: '$55',
-                id: 'shoe-005',
-              },
-              {
-                name: 'Puma',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbASUKxGng2oCQlny4ElHZPBdkFCk2_5mkGQ&s',
-                price: '$69',
-                id: 'shoe-006',
-              },
-              {
-                name: 'Nike',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnFKyLTkuY2dvN963dSVWFmFk-I__NanYFYA&s',
-                price: '$40',
-                id: 'shoe-007',
-              },
-              {
-                name: 'Adidas',
-                image: 'https://5.imimg.com/data5/BJ/PX/MY-35581878/adidas-vermont-white-running-shoes.png',
-                price: '$55',
-                id: 'shoe-008',
-              },
-              {
-                name: 'Puma',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbASUKxGng2oCQlny4ElHZPBdkFCk2_5mkGQ&s',
-                price: '$69',
-                id: 'shoe-009',
-              },
+            //   },
+            //   {
+            //     name: 'Nike',
+            //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnFKyLTkuY2dvN963dSVWFmFk-I__NanYFYA&s',
+            //     price: '$40',
+            //     id: 'shoe-004',
+            //   },
+            //   {
+            //     name: 'Adidas',
+            //     image: 'https://5.imimg.com/data5/BJ/PX/MY-35581878/adidas-vermont-white-running-shoes.png',
+            //     price: '$55',
+            //     id: 'shoe-005',
+            //   },
+            //   {
+            //     name: 'Puma',
+            //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbASUKxGng2oCQlny4ElHZPBdkFCk2_5mkGQ&s',
+            //     price: '$69',
+            //     id: 'shoe-006',
+            //   },
+            //   {
+            //     name: 'Nike',
+            //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnFKyLTkuY2dvN963dSVWFmFk-I__NanYFYA&s',
+            //     price: '$40',
+            //     id: 'shoe-007',
+            //   },
+            //   {
+            //     name: 'Adidas',
+            //     image: 'https://5.imimg.com/data5/BJ/PX/MY-35581878/adidas-vermont-white-running-shoes.png',
+            //     price: '$55',
+            //     id: 'shoe-008',
+            //   },
+            //   {
+            //     name: 'Puma',
+            //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbASUKxGng2oCQlny4ElHZPBdkFCk2_5mkGQ&s',
+            //     price: '$69',
+            //     id: 'shoe-009',
+            //   },
           ],
         },
         {
           name: 'Accessories',
           image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-KNTs66BZhaKR9KeRbgJ8xOzTxM99nWkMDg&s',
+            'https://www.theodoredesigns.com.au/cdn/shop/articles/i_8.webp?v=1674285421',
         },
         {
           name: 'Winter Clothes',
           image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPK1iS1_JvicMgziZTcu--h_FWRqKIWmkwSg&s',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQdu8Rkns9GkmYTfEG9gDXLGY9DPlecPFduQ&s',
         },
       ],
     },
@@ -163,36 +163,36 @@ const initialState = {
       image:
         'https://images.stockcake.com/public/b/5/a/b5a00bc0-d4bf-4303-a5a3-e1c3730fdc53_large/electronic-gadgets-collection-stockcake.jpg',
       subcategories: [
-        {
-          name: 'Mobile Phones & Tablets',
-          image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTbaoiNHiF1n-gsRnMi2bzGolWDyCjjTEkxg&s',
-        },
-        {
-          name: 'Laptops & Computers',
-          image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMXvNbm80ZxDVwpCrk8fmhd0VAgQswVDlTeA&s',
-        },
-        {
-          name: 'Cameras',
-          image:
-            'https://img.freepik.com/free-vector/video-surveillance-security-cameras-realistic-composition-black-white-cameras-form-circle-illustration_1284-61014.jpg?semt=ais_hybrid',
-        },
-        {
-          name: 'TV & Home Entertainment',
-          image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxNKzyIfCJCxtMkx5ZVC5DaoFcyG2-C8tGAg&s',
-        },
-        {
-          name: 'Audio Devices',
-          image:
-            'https://www.portronics.com/cdn/shop/files/Audio_Hero_Banner_Mobile.png?v=1708407591',
-        },
-        {
-          name: 'Mobile Covers',
-          image:
-            'https://w7.pngwing.com/pngs/95/779/png-transparent-iphone-6-mobile-phone-accessories-printing-smartphone-telephone-case-text-mobile-phone-iphone-6.png',
-        },
+        // {
+        //   name: 'Mobile Phones & Tablets',
+        //   image:
+        //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTbaoiNHiF1n-gsRnMi2bzGolWDyCjjTEkxg&s',
+        // },
+        // {
+        //   name: 'Laptops & Computers',
+        //   image:
+        //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMXvNbm80ZxDVwpCrk8fmhd0VAgQswVDlTeA&s',
+        // },
+        // {
+        //   name: 'Cameras',
+        //   image:
+        //     'https://img.freepik.com/free-vector/video-surveillance-security-cameras-realistic-composition-black-white-cameras-form-circle-illustration_1284-61014.jpg?semt=ais_hybrid',
+        // },
+        // {
+        //   name: 'TV & Home Entertainment',
+        //   image:
+        //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxNKzyIfCJCxtMkx5ZVC5DaoFcyG2-C8tGAg&s',
+        // },
+        // {
+        //   name: 'Audio Devices',
+        //   image:
+        //     'https://www.portronics.com/cdn/shop/files/Audio_Hero_Banner_Mobile.png?v=1708407591',
+        // },
+        // {
+        //   name: 'Mobile Covers',
+        //   image:
+        //     'https://w7.pngwing.com/pngs/95/779/png-transparent-iphone-6-mobile-phone-accessories-printing-smartphone-telephone-case-text-mobile-phone-iphone-6.png',
+        // },
       ],
     },
     {

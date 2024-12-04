@@ -99,7 +99,7 @@ const UserNavBar = () => {
       <View style={styles.userInfoContainer}>
         <Image
           source={{
-            uri: "https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png",
+            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3u9qmFpVREXc8-W00nlQqtLHQG4dQZAO-_A&s",
           }}
           style={styles.userImage}
         />
